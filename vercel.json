@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "https://ironapt.rbenthem.es/$1"
+      "destination": "https://apt3.rbenthem.es/$1"
     },
     {
       "source": "/(.*)",

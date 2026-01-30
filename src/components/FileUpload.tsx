@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 interface FileUploadProps {
   onImageUpload: (imageUrl: string) => void;
 }
+const storedToken = localStorage.getItem("authToken");
 
 function FileUpload({ onImageUpload }: FileUploadProps) {
   const [file, setFile] = useState<File | null>(null);
@@ -24,7 +25,10 @@ function FileUpload({ onImageUpload }: FileUploadProps) {
     try {
       const response = await fetch('/api/fileupload/upload', {
         method: 'POST',
-        body: formData 
+        headers: {
+          Authorization: `Bearer ${storedToken}`,
+        },
+        body: formData,
       });
 
       const responseData = await response.json();
