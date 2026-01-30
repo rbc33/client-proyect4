@@ -25,12 +25,15 @@ const ApartmentDet = () => {
 
   useEffect(() => {
     const fetchApt = async () => {
-      const res = await fetch(`/api/apartment/${id}`, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${storedToken}`,
+      const res = await fetch(
+        `${import.meta.env.VITE_API_URL || "http://localhost:5005"}/api/apartment/${id}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${storedToken}`,
+          },
         },
-      });
+      );
       const data = await res.json();
       setApartment(data);
       console.log(data);

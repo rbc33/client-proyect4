@@ -13,18 +13,18 @@ const EditApartment = () => {
   const [pricePerDay, setPricePerDay] = useState(apartment?.pricePerDay);
   const [size, setSize] = useState(apartment?.size);
   const [image, setImage] = useState(apartment?.image);
-  const storedToken = localStorage.getItem('authToken');
-
+  const storedToken = localStorage.getItem("authToken");
 
   useEffect(() => {
     const fetchApt = async () => {
-      const response = await fetch(`/api/apartment/${id}`,
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL || "http://localhost:5005"}/api/apartment/${id}`,
         {
           headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${storedToken}`
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${storedToken}`,
+          },
         },
-        }
       );
       const data = await response.json();
       setApartment(data);
@@ -74,15 +74,17 @@ const EditApartment = () => {
       image,
     };
     try {
-      const response = await fetch(`/api/apartment/${apartment._id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${storedToken}`
-
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL || "http://localhost:5005"}/api/apartment/${apartment._id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${storedToken}`,
+          },
+          body: JSON.stringify(updatedApartment),
         },
-        body: JSON.stringify(updatedApartment),
-      });
+      );
       if (response.ok) {
         navigate(`/apartment/${apartment._id}`);
       } else {

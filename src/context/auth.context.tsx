@@ -20,7 +20,7 @@ interface AuthContextType {
 }
 
 const AuthContext = React.createContext<AuthContextType>({} as AuthContextType);
-const API_URL = "https://apt3.rbenthem.es";
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5005";
 
 interface AuthResponse {
   data: User;

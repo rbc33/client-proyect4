@@ -10,8 +10,7 @@ const AddApt = () => {
   const [pricePerDay, setPricePerDay] = useState(0);
   const [size, setSize] = useState(0);
   const [image, setImage] = useState("");
-  const storedToken = localStorage.getItem('authToken');
-
+  const storedToken = localStorage.getItem("authToken");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -48,15 +47,17 @@ const AddApt = () => {
       image,
     };
     try {
-      const response = await fetch(`/api/apartment`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${storedToken}`
-
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL || "http://localhost:5005"}/api/apartment`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${storedToken}`,
+          },
+          body: JSON.stringify(newApartment),
         },
-        body: JSON.stringify(newApartment),
-      });
+      );
       if (response.ok) {
         navigate(`/`);
       } else {
@@ -69,24 +70,24 @@ const AddApt = () => {
   return (
     <div className="container mx-auto px-4 pb-10">
       <h1 className="text-3xl font-bold text-center mb-8">Add Apartment</h1>
-      
-        <AptForm
-          name={name}
-          description={description}
-          capacity={capacity}
-          pricePerDay={pricePerDay}
-          size={size}
-          image={image}
-          setName={setName}
-          setDescription={setDescription}
-          setCapacity={setCapacity}
-          setPricePerDay={setPricePerDay}
-          setSize={setSize}
-          setImage={setImage}
-          handleSubmit={handleSubmit}
-        />
+
+      <AptForm
+        name={name}
+        description={description}
+        capacity={capacity}
+        pricePerDay={pricePerDay}
+        size={size}
+        image={image}
+        setName={setName}
+        setDescription={setDescription}
+        setCapacity={setCapacity}
+        setPricePerDay={setPricePerDay}
+        setSize={setSize}
+        setImage={setImage}
+        handleSubmit={handleSubmit}
+      />
     </div>
   );
 };
 
-export default AddApt
+export default AddApt;

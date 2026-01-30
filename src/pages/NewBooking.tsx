@@ -6,7 +6,7 @@ import BookingForm from "../components/BookingForm";
 import { type Apartment, type Booking } from "../types/types";
 import { AuthContext } from "../context/auth.context";
 
-export const BASE_URL = "/api";
+export const BASE_URL = `${import.meta.env.VITE_API_URL || "http://localhost:5005"}/api`;
 const storedToken = localStorage.getItem("authToken");
 
 const NewBooking = () => {
@@ -47,20 +47,23 @@ const NewBooking = () => {
           });
           return;
         }
-        const res = await fetch("api/booking", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${storedToken}`,
+        const res = await fetch(
+          `${import.meta.env.VITE_API_URL || "http://localhost:5005"}/api/booking`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${storedToken}`,
+            },
+            body: JSON.stringify({
+              apartmentId: apartment._id,
+              checkIn: dateRange.from,
+              checkOut: dateRange.to!,
+              guestName: guestName,
+              guests: guests,
+            }),
           },
-          body: JSON.stringify({
-            apartmentId: apartment._id,
-            checkIn: dateRange.from,
-            checkOut: dateRange.to!,
-            guestName: guestName,
-            guests: guests,
-          }),
-        });
+        );
         if (!res.ok) {
           throw new Error("Error creating booking");
         }
@@ -126,12 +129,17 @@ async function getAvailableApartments(
 ) {
   try {
     // Petición simple a apartment
-    const resApt = await fetch("/api/apartment");
+    const resApt = await fetch(
+      `${import.meta.env.VITE_API_URL || "http://localhost:5005"}/api/apartment`,
+    );
     const allApartments = await resApt.json();
 
-    const resBook = await fetch("/api/booking", {
-      headers: { Authorization: `Bearer ${storedToken}` },
-    });
+    const resBook = await fetch(
+      `${import.meta.env.VITE_API_URL || "http://localhost:5005"}/api/booking`,
+      {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      },
+    );
     const allBookings = await resBook.json();
 
     console.log("All apartments:", allApartments);
