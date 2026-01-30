@@ -45,6 +45,9 @@ const ApartmentDet = () => {
     try {
       const response = await fetch(BASE_URL + `/booking/${bookingId}`, {
         method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${storedToken}`,
+        },
       });
       if (response.ok) {
         setApartment((currentApartment) => {
