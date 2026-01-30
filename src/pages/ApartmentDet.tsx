@@ -36,7 +36,7 @@ const ApartmentDet = () => {
       );
       const data = await res.json();
       setApartment(data);
-      console.log(data);
+      // console.log(data);
     };
 
     fetchApt();

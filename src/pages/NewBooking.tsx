@@ -142,8 +142,8 @@ async function getAvailableApartments(
     );
     const allBookings = await resBook.json();
 
-    console.log("All apartments:", allApartments);
-    console.log("All bookings:", allBookings);
+    // console.log("All apartments:", allApartments);
+    // console.log("All bookings:", allBookings);
 
     // Si no hay fechas, devolver todos los apartamentos filtrados por capacidad
     if (!checkInDate || !checkOutDate) {
@@ -190,22 +190,22 @@ function checkAvailability(
     const bookingIn = new Date(start);
     const bookingOut = new Date(end);
 
-    console.log(
-      `Checking booking: ${bookingIn.toDateString()} - ${bookingOut.toDateString()}`,
-    );
-    console.log(
-      `Against dates: ${checkIn.toDateString()} - ${checkOut.toDateString()}`,
-    );
+    // console.log(
+    //   `Checking booking: ${bookingIn.toDateString()} - ${bookingOut.toDateString()}`,
+    // );
+    // console.log(
+    //   `Against dates: ${checkIn.toDateString()} - ${checkOut.toDateString()}`,
+    // );
 
     // Si las fechas son inválidas, no hay overlap
     if (isNaN(bookingIn.getTime()) || isNaN(bookingOut.getTime())) {
-      console.log("Invalid booking dates, skipping");
+      // console.log("Invalid booking dates, skipping");
       return false;
     }
 
     // Check for date overlap
     const hasOverlap = checkIn < bookingOut && checkOut > bookingIn;
-    console.log(`Has overlap: ${hasOverlap}`);
+    // console.log(`Has overlap: ${hasOverlap}`);
 
     return hasOverlap;
   });
