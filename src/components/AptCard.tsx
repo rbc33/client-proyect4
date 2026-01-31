@@ -8,7 +8,7 @@ interface AptCardProps {
 }
 
 const AptCard = ({ apartment, children }: AptCardProps) => {
-  const { _id, name, description, size, capacity, pricePerDay, image } = apartment
+  const { _id, name, description, size, capacity, pricePerDay, images } = apartment
   // console.log('AptCard received image:', image);
   
   return (
@@ -16,11 +16,11 @@ const AptCard = ({ apartment, children }: AptCardProps) => {
       <figure>
         {_id ? (
           <Link to={`/apartment/${_id}`} className="w-full h-64 overflow-hidden">
-            {(image) && <img src={image} alt={name?? "AptPhoto"} className="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />}
+            {(images) && <img src={images[0]} alt={name?? "AptPhoto"} className="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />}
           </Link>
         ) : (
           <div className="w-full h-64 overflow-hidden">
-            {(image) && <img src={image} alt={name?? "AptPhoto"} className="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />}
+            {(images) && <img src={images[0]} alt={name?? "AptPhoto"} className="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />}
           </div>
         )}
       </figure>

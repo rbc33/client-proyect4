@@ -1,7 +1,7 @@
 export interface Apartment {
   _id?: string;
   name?: string;
-  image?: string;
+  images?: string[];
   size?: number;
   pricePerDay?: number;
   description?: string;

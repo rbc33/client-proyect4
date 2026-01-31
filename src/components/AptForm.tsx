@@ -9,13 +9,13 @@ interface AptFormProps {
     capacity?: number;
     pricePerDay?: number;
     size?: number;
-    image?: string;
+    images?: string[];
     setName: (name: string) => void;
     setDescription: (description: string) => void;
     setCapacity: (capacity: number) => void;
     setPricePerDay: (pricePerDay: number) => void;
     setSize: (size: number) => void;
-    setImage: (images: string) => void;
+    setImages: (images: string[]) => void;
     handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 }
 const AptForm = ({
@@ -25,18 +25,24 @@ const AptForm = ({
     capacity,
     pricePerDay,
     size,
-    image,
+    images,
     setName,
     setDescription,
     setCapacity,
     setPricePerDay,
     setSize,
-    setImage,
+    setImages,
     handleSubmit,
 }: AptFormProps ) => {
   const handleImageUpload = (imageUrl: string) => {
-    setImage(imageUrl);
-    console.log('Image URL:', image);
+    if (images != undefined){
+
+      setImages([...images,imageUrl]);
+    }
+    else {
+      setImages([imageUrl]);
+    }
+    console.log('Image URL:', images);
   };
 
   return (
@@ -124,7 +130,7 @@ const AptForm = ({
       <div className="flex-1">
         <h2 className="text-xl font-bold mb-4 text-center">Preview</h2>
         <div className="sticky top-4">
-          <AptCard apartment={{ _id, name, description, capacity, pricePerDay, size, image }} />
+          <AptCard apartment={{ _id, name, description, capacity, pricePerDay, size, images }} />
         </div>
       </div>
     </div>

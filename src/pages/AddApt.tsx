@@ -9,7 +9,7 @@ const AddApt = () => {
   const [capacity, setCapacity] = useState(0);
   const [pricePerDay, setPricePerDay] = useState(0);
   const [size, setSize] = useState(0);
-  const [image, setImage] = useState("");
+  const [images, setImages] = useState<string[]>();
   const storedToken = localStorage.getItem("authToken");
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -34,7 +34,7 @@ const AddApt = () => {
       alert("Please enter a size");
       return;
     }
-    if (image === "") {
+    if (images === undefined) {
       alert("Please enter an image");
       return;
     }
@@ -44,7 +44,7 @@ const AddApt = () => {
       capacity,
       pricePerDay,
       size,
-      image,
+      images,
     };
     try {
       const response = await fetch(
@@ -77,13 +77,13 @@ const AddApt = () => {
         capacity={capacity}
         pricePerDay={pricePerDay}
         size={size}
-        image={image}
+        images={images}
         setName={setName}
         setDescription={setDescription}
         setCapacity={setCapacity}
         setPricePerDay={setPricePerDay}
         setSize={setSize}
-        setImage={setImage}
+        setImages={setImages}
         handleSubmit={handleSubmit}
       />
     </div>
