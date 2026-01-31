@@ -80,7 +80,6 @@ const NavBar = () => {
         </div>
         
         <ThemeToggle />
-      </div>
       <div className="dropdown dropdown-end">
           <div tabIndex={0} role="button" className="btn btn-ghost md:hidden focus:bg-slate-300 dark:focus:bg-slate-600">
             <GiHamburgerMenu className="text-2xl" />
@@ -88,7 +87,7 @@ const NavBar = () => {
           <ul
             tabIndex={0}
             className="menu menu-sm dropdown-content mt-3 z-1 p-2 shadow bg-slate-300 dark:bg-slate-700 rounded-box w-52"
-          >
+            >
             <li>
               <NavLink to="/"><p className="text-xl">Home</p></NavLink>
             </li>
@@ -103,6 +102,7 @@ const NavBar = () => {
             </li>
           </ul>
         </div>
+            </div>
     </div>
   );
 };
