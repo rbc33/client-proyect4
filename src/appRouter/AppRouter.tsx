@@ -10,6 +10,7 @@ import SignUpPage from '../pages/SignUpPage'
 import LogInPage from '../pages/LogInPage'
 import IsPrivate from '../components/IsPrivate'
 import IsAnon from '../components/IsAnon'
+import UserPage from '../pages/UserPage'
 
 const AppRouter = () => {
   return (
@@ -23,6 +24,7 @@ const AppRouter = () => {
         <Route path="/about" element={<AboutPage/>}></Route>
         <Route path="/signup" element={<IsAnon><SignUpPage /></IsAnon>}></Route>
         <Route path="/login" element={<IsAnon><LogInPage /></IsAnon>}></Route>
+        <Route path="/profile" element={<IsPrivate><UserPage /></IsPrivate>}></Route>
         <Route path="/*" element={<ErrorPage/>}></Route>
     </Routes>
     </>

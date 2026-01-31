@@ -3,8 +3,8 @@ import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { AuthContext } from "../context/auth.context";
+import API_URL from "../utils";
 
-const API_URL = "https://apt3.rbenthem.es";
 
 const LogInPage = () => {
   const navigate = useNavigate();

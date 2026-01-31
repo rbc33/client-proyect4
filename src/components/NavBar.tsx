@@ -57,6 +57,9 @@ const NavBar = () => {
         {!isLoggedIn && <NavLink className={isActiveStyleAuth} to="/login">
           Log in
         </NavLink>}
+        {isLoggedIn && <NavLink className={isActiveStyleAuth} to="/profile">
+          User
+        </NavLink>}
         {isLoggedIn && <button className={"btn btn-ghost text-xl hover:text-slate-500 hover:dark:text-slate-500"} onClick={() => logoutUser()}>Log Out</button>}
         <ThemeToggle />
       </div>

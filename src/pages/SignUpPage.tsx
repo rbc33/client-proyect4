@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-hot-toast";
+import API_URL from "../utils";
 
-const API_URL = "https://apt3.rbenthem.es";
 
 const SignUpPage = () => {
   const navigate = useNavigate();

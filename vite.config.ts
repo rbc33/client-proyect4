@@ -8,7 +8,8 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://apt3.rbenthem.es/",
+        // target: "https://apt3.rbenthem.es/",
+        target: "http://localhost:5005/",
         changeOrigin: true,
       },
     },
