@@ -1,6 +1,9 @@
 import { FaReact } from 'react-icons/fa';
 import { SiTypescript, SiTailwindcss, SiVite } from 'react-icons/si';
 import daisyUI from "../assets/daisyui-logo-2000.png"
+import { SiExpress } from "react-icons/si";
+import { SiMongodb } from "react-icons/si";
+
 
 const AboutPage = () => {
   return (
@@ -55,6 +58,16 @@ const AboutPage = () => {
                 <img src={daisyUI} alt="daisyUI logo" className="size-10 mb-1" />
                 <h3 className="font-semibold">DaisyUI</h3>
                 <p className="text-sm text-base-content/70">UI Components</p>
+              </div>
+              <div className="flex flex-col items-center text-center">
+                <SiExpress  className="text-4xl text-white-500 mb-2" />
+                <h3 className="font-semibold">Express</h3>
+                <p className="text-sm text-base-content/70">Backend</p>
+              </div>
+              <div className="flex flex-col items-center text-center">
+                <SiMongodb  className="text-4xl text-green-500 mb-2" />
+                <h3 className="font-semibold">MongoDB</h3>
+                <p className="text-sm text-base-content/70">NoSQL database</p>
               </div>
 
             </div>
