@@ -12,7 +12,7 @@ const EditApartment = () => {
   const [capacity, setCapacity] = useState(apartment?.capacity);
   const [pricePerDay, setPricePerDay] = useState(apartment?.pricePerDay);
   const [size, setSize] = useState(apartment?.size);
-  const [image, setImage] = useState(apartment?.image);
+  const [images, setImages] = useState<string[]>(apartment?.images || []);
   const storedToken = localStorage.getItem("authToken");
 
   useEffect(() => {
@@ -33,7 +33,7 @@ const EditApartment = () => {
       setCapacity(data.capacity);
       setPricePerDay(data.pricePerDay);
       setSize(data.size);
-      setImage(data.image);
+      setImages(data.images || []);
     };
     fetchApt();
   }, [id]);
@@ -60,8 +60,8 @@ const EditApartment = () => {
       alert("Please enter a size");
       return;
     }
-    if (image === "") {
-      alert("Please enter an image");
+    if (!images || images.length === 0) {
+      alert("Please upload at least one image");
       return;
     }
     const updatedApartment = {
@@ -71,7 +71,7 @@ const EditApartment = () => {
       capacity,
       pricePerDay,
       size,
-      image,
+      images,
     };
     try {
       const response = await fetch(
@@ -105,13 +105,13 @@ const EditApartment = () => {
           capacity={capacity}
           pricePerDay={pricePerDay}
           size={size}
-          image={image}
+          images={images}
           setName={setName}
           setDescription={setDescription}
           setCapacity={setCapacity}
           setPricePerDay={setPricePerDay}
           setSize={setSize}
-          setImage={setImage}
+          setImages={setImages}
           handleSubmit={handleSubmit}
         />
       )}
