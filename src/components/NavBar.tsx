@@ -4,6 +4,8 @@ import ThemeToggle from "./ThemeToggle";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { AuthContext } from "../context/auth.context";
 import { useContext } from "react";
+import { FaRegUserCircle } from "react-icons/fa";
+
 
 const NavBar = () => {
   const {isLoggedIn, logoutUser } = useContext(AuthContext)
@@ -51,21 +53,37 @@ const NavBar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        {!isLoggedIn && <NavLink className={isActiveStyleAuth} to="/signup">
+        <div className="dropdown dropdown-end">
+          <div tabIndex={0} role="button" className="btn btn-ghost  focus:bg-slate-300 dark:focus:bg-slate-600">
+            <FaRegUserCircle className="text-2xl" />
+          </div>
+          <ul
+            tabIndex={0}
+            className="menu menu-sm dropdown-content mt-3 z-1 p-2 shadow bg-slate-300 dark:bg-slate-700 rounded-box w-52"
+          >
+        {!isLoggedIn && <li><NavLink className={isActiveStyleAuth} to="/signup">
           Sign up
-        </NavLink>}
-        {!isLoggedIn && <NavLink className={isActiveStyleAuth} to="/login">
+        </NavLink></li>}
+        {!isLoggedIn && <li><NavLink className={isActiveStyleAuth} to="/login">
           Log in
-        </NavLink>}
-        {isLoggedIn && <NavLink className={isActiveStyleAuth} to="/profile">
+        </NavLink></li>}
+            
+              {isLoggedIn && <li><NavLink className={isActiveStyleAuth} to="/profile">
           User
-        </NavLink>}
-        {isLoggedIn && <button className={"btn btn-ghost text-xl hover:text-slate-500 hover:dark:text-slate-500"} onClick={() => logoutUser()}>Log Out</button>}
+        </NavLink></li>}
+            
+            
+        {isLoggedIn && <li><button className={"btn btn-ghost text-xl hover:text-slate-500 hover:dark:text-slate-500"} onClick={() => logoutUser()}>Log Out</button></li>}
+            
+           
+          </ul>
+        </div>
+        
         <ThemeToggle />
       </div>
       <div className="dropdown dropdown-end">
           <div tabIndex={0} role="button" className="btn btn-ghost md:hidden focus:bg-slate-300 dark:focus:bg-slate-600">
-            <GiHamburgerMenu className="text-xl" />
+            <GiHamburgerMenu className="text-2xl" />
           </div>
           <ul
             tabIndex={0}
