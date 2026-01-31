@@ -9,7 +9,7 @@ interface AptCardProps {
 
 const AptCard = ({ apartment, children }: AptCardProps) => {
   const { _id, name, description, size, capacity, pricePerDay, images } = apartment
-  console.log('AptCard received image:', images);
+  // console.log('AptCard received images:', images);
   
   return (
     <div className="card border-2 border-slate-600 bg-base-100 shadow-xl hover:shadow-2xl transition-shadow duration-300 rounded-lg">
