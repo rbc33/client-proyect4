@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@source "../node_modules/flowbite-react/dist/**/*.js";
 
 @plugin "daisyui" {
   themes: all;
