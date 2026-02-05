@@ -57,7 +57,7 @@ const SignUpPage = () => {
               </label>
               <input
                 type="text"
-                placeholder="John Doe"
+                placeholder="Name"
                 className="input input-bordered w-full"
                 value={name}
                 onChange={handleName}
