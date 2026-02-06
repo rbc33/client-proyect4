@@ -11,9 +11,8 @@ const LogInPage = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
 
-  const { storeToken, authenticateUser } = useContext(AuthContext);
+  const { storeToken, authenticateUser, isLoading} = useContext(AuthContext);
 
   const handleEmail = (e: React.ChangeEvent<HTMLInputElement>) =>
     setEmail(e.target.value);
@@ -22,7 +21,6 @@ const LogInPage = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLoading(true);
     const formBody = { email, password };
 
     axios
@@ -37,9 +35,6 @@ const LogInPage = () => {
         console.log(error);
         toast.error(error.response?.data?.message || "Login failed");
       })
-      .finally(() => {
-        setLoading(false);
-      });
   };
 
   return (
@@ -81,10 +76,10 @@ const LogInPage = () => {
             <div className="form-control mt-4">
               <button
                 type="submit"
-                className={`btn btn-primary w-full ${loading ? "loading" : ""}`}
-                disabled={loading}
+                className={`btn btn-primary w-full ${isLoading ? "loading" : ""}`}
+                disabled={isLoading}
               >
-                {loading ? "Authenticating..." : "Log in"}
+                {isLoading ? "Authenticating..." : "Log in"}
               </button>
             </div>
           </form>

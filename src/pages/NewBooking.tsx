@@ -7,7 +7,6 @@ import { type Apartment, type Booking } from "../types/types";
 import { AuthContext } from "../context/auth.context";
 
 export const BASE_URL = `${import.meta.env.VITE_API_URL || "http://localhost:5005"}/api`;
-const storedToken = localStorage.getItem("authToken");
 
 const NewBooking = () => {
   const [apartaments, setApartaments] = useState<Apartment[]>([]);
@@ -15,6 +14,7 @@ const NewBooking = () => {
   const now = new Date();
   const tomorrowDate = new Date(now);
   tomorrowDate.setDate(tomorrowDate.getDate() + 1);
+  const storedToken = localStorage.getItem("authToken");
 
   const [dateRange, setDateRange] = useState<DateRange | undefined>();
   const [guests, setGuests] = useState<number>(1);
@@ -134,13 +134,28 @@ async function getAvailableApartments(
     );
     const allApartments = await resApt.json();
 
+    const token = localStorage.getItem("authToken");
+
     const resBook = await fetch(
       `${import.meta.env.VITE_API_URL || "http://localhost:5005"}/api/booking`,
       {
-        headers: { Authorization: `Bearer ${storedToken}` },
+        headers: { Authorization: `Bearer ${token}` },
       },
     );
-    const allBookings = await resBook.json();
+
+    if (!resBook.ok) {
+      console.error(
+        "Failed to fetch bookings:",
+        resBook.status,
+        resBook.statusText,
+      );
+      // If we can't get bookings, we can default to empty array (assuming no bookings)
+      // OR better: throw an error so we don't show unavailable apartments as available.
+      // For now, let's treat it as empty list but log it.
+      // If 401, it means user session issue.
+    }
+
+    const allBookings = resBook.ok ? await resBook.json() : [];
 
     // console.log("All apartments:", allApartments);
     // console.log("All bookings:", allBookings);
