@@ -1,29 +1,32 @@
-import React from 'react'
-import type { Apartment } from '../types/types'
-import { Link } from 'react-router-dom'
+import React from "react";
+import type { Apartment } from "../types/types";
+import { Link } from "react-router-dom";
+import { EmblaCarousel } from "./EmblaCarousel";
 
 interface AptCardProps {
-  apartment: Apartment
-  children?: React.ReactNode
+  apartment: Apartment;
+  children?: React.ReactNode;
 }
 
 const AptCard = ({ apartment, children }: AptCardProps) => {
-  const { _id, name, description, size, capacity, pricePerDay, images } = apartment
-  // console.log('AptCard received images:', images);
-  
+  const { _id, name, description, size, capacity, pricePerDay, images } =
+    apartment;
+
+  const renderCarousel = () => {
+    if (!images || images.length === 0) return null;
+
+    return (
+      <div className="relative h-64 w-full overflow-hidden rounded-t-lg group">
+        <div className="h-full w-full">
+          <EmblaCarousel images={images} name={name} id={_id} />
+        </div>
+      </div>
+    );
+  };
+
   return (
-    <div className="card border-2 border-slate-600 bg-base-100 shadow-xl hover:shadow-2xl transition-shadow duration-300 rounded-lg">
-      <figure>
-        {_id ? (
-          <Link to={`/apartment/${_id}`} className="w-full h-64 overflow-hidden">
-            {(images) && <img src={images[0]} alt={name?? "AptPhoto"} className="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />}
-          </Link>
-        ) : (
-          <div className="w-full h-64 overflow-hidden">
-            {(images) && <img src={images[0]} alt={name?? "AptPhoto"} className="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />}
-          </div>
-        )}
-      </figure>
+    <div className="card border-2 border-slate-600 bg-base-100 shadow-xl hover:shadow-2xl transition-shadow duration-300 rounded-lg overflow-hidden">
+      {renderCarousel()}
       <div className="card-body">
         {_id ? (
           <Link to={`/apartment/${_id}`}>
@@ -44,10 +47,12 @@ const AptCard = ({ apartment, children }: AptCardProps) => {
           <span>Capacity: {capacity} guests</span>
         </div>
         <p className="line-clamp-3">{description}</p>
-        {children && <div className="card-actions justify-end mt-4">{children}</div>}
+        {children && (
+          <div className="card-actions justify-end mt-4">{children}</div>
+        )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default AptCard
+export default AptCard;
