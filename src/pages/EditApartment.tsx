@@ -94,6 +94,31 @@ const EditApartment = () => {
       console.error("Error updating apartment:", error);
     }
   };
+  const handleDelete = async () => {
+    if (!apartment) return;
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL || "http://localhost:5005"}/api/apartment/${apartment._id}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${storedToken}`,
+          },
+        },
+      );
+      if (response.ok) {
+        navigate(`/`);
+      } 
+      else {
+        console.error("Failed to delete apartment");
+      }
+    }
+    catch (error) {
+      console.error("Error deleting apartment:", error);
+    }
+  }
+  
   return (
     <div className="container mx-auto px-4 pb-10">
       <h1 className="text-3xl font-bold text-center mb-8">Edit Apartment</h1>
@@ -115,6 +140,9 @@ const EditApartment = () => {
           handleSubmit={handleSubmit}
         />
       )}
+      <button className="btn btn-secondary mt-4 ml-6 w-" onClick={handleDelete}>
+              Delete Apartment
+            </button>
     </div>
   );
 };
