@@ -195,7 +195,7 @@ function checkAvailability(
     const start = booking.checkIn || booking.in;
     const end = booking.checkOut || booking.out;
 
-    console.log("Raw booking values:", start, end); // Ver valores raw
+    // console.log("Raw booking values:", start, end); // Ver valores raw
 
     if (!start || !end) {
       console.log("Missing booking dates, skipping");
