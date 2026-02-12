@@ -10,7 +10,7 @@ type PropType = {
 export function EmblaCarousel({ images, name, id }: PropType) {
   const [emblaRef] = useEmblaCarousel({ loop: true });
 
-  console.log("EmblaCarousel images:", images);
+  // console.log("EmblaCarousel images:", images);
 
   if (!images || images.length === 0)
     return (
