@@ -3,11 +3,11 @@ import React, { useState } from "react";
 interface FileUploadProps {
   onImageUpload: (imageUrl: string) => void;
 }
-const storedToken = localStorage.getItem("authToken");
+
 
 function FileUpload({ onImageUpload }: FileUploadProps) {
   const [file, setFile] = useState<File | null>(null);
-
+  const storedToken = localStorage.getItem("authToken");
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFile(e.target.files?.[0] ?? null);
   };
