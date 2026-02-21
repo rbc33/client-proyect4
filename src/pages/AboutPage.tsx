@@ -17,6 +17,7 @@ const AboutPage = () => {
                 <p className="text-base-content/80 text-xl">
                   A SPA React application built with TypeScript, Vite, and Tailwind CSS. The interface is fully responsive
                   and accessible, with customizable themes powered by DaisyUI.
+                  The backend uses Express with TypeScript and MongoDB as its database.
                 </p>
               </div>
              
