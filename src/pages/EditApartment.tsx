@@ -75,7 +75,7 @@ const EditApartment = () => {
     };
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_API_URL || "http://localhost:5005"}/api/apartment/${apartment._id}`,
+        `${import.meta.env.VITE_API_URL || "http://localhost:5005"}/api/apartment/${apartment.id}`,
         {
           method: "PUT",
           headers: {
@@ -86,7 +86,7 @@ const EditApartment = () => {
         },
       );
       if (response.ok) {
-        navigate(`/apartment/${apartment._id}`);
+        navigate(`/apartment/${apartment.id}`);
       } else {
         console.error("Failed to update apartment");
       }
@@ -98,7 +98,7 @@ const EditApartment = () => {
     if (!apartment) return;
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_API_URL || "http://localhost:5005"}/api/apartment/${apartment._id}`,
+        `${import.meta.env.VITE_API_URL || "http://localhost:5005"}/api/apartment/${apartment.id}`,
         {
           method: "DELETE",
           headers: {
@@ -122,7 +122,7 @@ const EditApartment = () => {
       <h1 className="text-3xl font-bold text-center mb-8">Edit Apartment</h1>
       {apartment && (
         <AptForm
-          _id={apartment._id}
+          id={apartment.id}
           name={name}
           description={description}
           capacity={capacity}
