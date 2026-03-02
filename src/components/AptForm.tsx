@@ -3,11 +3,11 @@ import AptCard from './AptCard';
 import FileUpload from './FileUpload';
 
 interface AptFormProps {
-    _id?: string
+    id?: string
     name?: string;
     description?: string;
     capacity?: number;
-    pricePerDay?: number;
+    price_per_day?: number;
     size?: number;
     images?: string[];
     setName: (name: string) => void;
@@ -19,11 +19,11 @@ interface AptFormProps {
     handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 }
 const AptForm = ({
-    _id,
+    id,
     name,
     description,
     capacity,
-    pricePerDay,
+    price_per_day,
     size,
     images,
     setName,
@@ -100,7 +100,7 @@ const AptForm = ({
                   type="number"
                   id="pricePerDay"
                   name="pricePerDay"
-                  value={pricePerDay}
+                  value={price_per_day}
                   onChange={(e) => setPricePerDay(Number(e.target.value))}
                 />
               </div>
@@ -130,7 +130,7 @@ const AptForm = ({
       <div className="flex-1">
         <h2 className="text-xl font-bold mb-4 text-center">Preview</h2>
         <div className="sticky top-4">
-          <AptCard apartment={{ _id, name, description, capacity, pricePerDay, size, images }} />
+          <AptCard apartment={{ id, name, description, capacity, price_per_day, size, images }} />
         </div>
       </div>
     </div>

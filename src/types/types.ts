@@ -1,21 +1,19 @@
 export interface Apartment {
-  _id?: string;
+  id?: string;
   name?: string;
   images?: string[];
   size?: number;
-  pricePerDay?: number;
+  price_per_day?: number;
   description?: string;
   capacity?: number;
   bookings?: Booking[];
 }
 
 export interface Booking {
-  _id: string;
-  apartmentId: string;
-  checkIn: Date;
-  checkOut: Date;
-  in?: Date ;
-  out?: Date
-  guestName: string;
-  guests: number;
+  id: string;
+  apartment_id: string;
+  check_in: Date;
+  check_out: Date;
+  guest_name: string;
+  guests?: number;
 }

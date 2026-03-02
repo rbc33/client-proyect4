@@ -10,7 +10,7 @@ const BookingCard = ({ booking, handleDelete }: BookingCardProps) => {
     <div className="card bg-base-100 shadow-md border border-slate-600 rounded-lg">
       <div className="card-body p-4">
         <h3 className="card-title text-base">
-          {booking.guestName}
+          {booking.guest_name}
           <div className="badge badge-sm badge-ghost">
             {booking.guests} guests
           </div>
@@ -18,13 +18,13 @@ const BookingCard = ({ booking, handleDelete }: BookingCardProps) => {
         <div className="text-sm text-base-content/70">
           <p>
             From:{" "}
-            {new Date(booking.checkIn || booking.in!).toLocaleDateString(
+            {new Date(booking.check_in).toLocaleDateString(
               "en-GB",
             )}
           </p>
           <p>
             To:{" "}
-            {new Date(booking.checkOut || booking.out!).toLocaleDateString(
+            {new Date(booking.check_out).toLocaleDateString(
               "en-GB",
             )}
           </p>
@@ -32,7 +32,7 @@ const BookingCard = ({ booking, handleDelete }: BookingCardProps) => {
         <div className="card-actions justify-end mt-2">
           <button
             className="btn btn-error btn-xs btn-outline"
-            onClick={() => handleDelete(booking._id)}
+            onClick={() => handleDelete(booking.id)}
           >
             Delete
           </button>

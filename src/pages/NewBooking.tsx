@@ -56,11 +56,11 @@ const NewBooking = () => {
               Authorization: `Bearer ${storedToken}`,
             },
             body: JSON.stringify({
-              apartmentId: apartment._id,
-              checkIn: dateRange.from,
-              checkOut: dateRange.to!,
-              guestName: guestName,
-              guests: guests,
+              apartment_id: apartment.id,
+              check_in: dateRange.from,
+              check_out: dateRange.to!,
+              guest_name: guestName,
+              // guests: guests,
             }),
           },
         );
@@ -106,7 +106,7 @@ const NewBooking = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {apartaments.map((apartment) => (
-          <AptCard key={apartment._id} apartment={apartment}>
+          <AptCard key={apartment.id} apartment={apartment}>
             <button
               className="btn btn-primary w-full"
               onClick={() => handleClick(apartment)}
@@ -158,7 +158,7 @@ async function getAvailableApartments(
     const allBookings = resBook.ok ? await resBook.json() : [];
 
     // console.log("All apartments:", allApartments);
-    // console.log("All bookings:", allBookings);
+    console.log("All bookings:", allBookings);
 
     // Si no hay fechas, devolver todos los apartamentos filtrados por capacidad
     if (!checkInDate || !checkOutDate) {
@@ -170,7 +170,7 @@ async function getAvailableApartments(
       .filter((apartment: Apartment) => {
         // Obtener reservas de este apartamento
         const apartmentBookings = allBookings.filter(
-          (booking: Booking) => booking.apartmentId === apartment._id,
+          (booking: Booking) => booking.apartment_id === apartment.id,
         );
 
         // Verificar disponibilidad
@@ -192,8 +192,8 @@ function checkAvailability(
 ) {
   return !apartmentBookings.some((booking) => {
     // Fallback for legacy data (in/out)
-    const start = booking.checkIn || booking.in;
-    const end = booking.checkOut || booking.out;
+    const start = booking.check_in ;
+    const end = booking.check_out 
 
     // console.log("Raw booking values:", start, end); // Ver valores raw
 

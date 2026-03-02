@@ -39,7 +39,7 @@ const HomePage = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {apartaments &&
           apartaments.map((apartment) => (
-            <AptCard key={apartment._id} apartment={apartment} />
+            <AptCard key={apartment.id} apartment={apartment} />
           ))}
       </div>
     </div>

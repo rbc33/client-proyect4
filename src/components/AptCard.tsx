@@ -9,7 +9,7 @@ interface AptCardProps {
 }
 
 const AptCard = ({ apartment, children }: AptCardProps) => {
-  const { _id, name, description, size, capacity, pricePerDay, images } =
+  const { id, name, description, size, capacity, price_per_day, images } =
     apartment;
 
   const renderCarousel = () => {
@@ -18,7 +18,7 @@ const AptCard = ({ apartment, children }: AptCardProps) => {
     return (
       <div className="relative h-64 w-full overflow-hidden rounded-t-lg group">
         <div className="h-full w-full">
-          <EmblaCarousel images={images} name={name} id={_id} />
+          <EmblaCarousel images={images} name={name} id={id} />
         </div>
       </div>
     );
@@ -28,17 +28,17 @@ const AptCard = ({ apartment, children }: AptCardProps) => {
     <div className="card border-2 border-slate-600 bg-base-100 shadow-xl hover:shadow-2xl transition-shadow duration-300 rounded-lg overflow-hidden">
       {renderCarousel()}
       <div className="card-body">
-        {_id ? (
-          <Link to={`/apartment/${_id}`}>
+        {id ? (
+          <Link to={`/apartment/${id}`}>
             <h2 className="card-title hover:text-primary transition-colors">
               {name}
-              <div className="badge badge-secondary">{pricePerDay}€/day</div>
+              <div className="badge badge-secondary">{price_per_day}€/day</div>
             </h2>
           </Link>
         ) : (
           <h2 className="card-title">
             {name}
-            <div className="badge badge-secondary">{pricePerDay}€/day</div>
+            <div className="badge badge-secondary">{price_per_day}€/day</div>
           </h2>
         )}
         <div className="flex gap-2 text-sm text-base-content/70">

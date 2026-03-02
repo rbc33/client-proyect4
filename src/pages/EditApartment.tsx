@@ -10,7 +10,7 @@ const EditApartment = () => {
   const [name, setName] = useState(apartment?.name);
   const [description, setDescription] = useState(apartment?.description);
   const [capacity, setCapacity] = useState(apartment?.capacity);
-  const [pricePerDay, setPricePerDay] = useState(apartment?.pricePerDay);
+  const [pricePerDay, setPricePerDay] = useState(apartment?.price_per_day);
   const [size, setSize] = useState(apartment?.size);
   const [images, setImages] = useState<string[]>(apartment?.images || []);
   const storedToken = localStorage.getItem("authToken");
@@ -31,7 +31,7 @@ const EditApartment = () => {
       setName(data.name);
       setDescription(data.description);
       setCapacity(data.capacity);
-      setPricePerDay(data.pricePerDay);
+      setPricePerDay(data.price_per_day);
       setSize(data.size);
       setImages(data.images || []);
     };
@@ -69,7 +69,7 @@ const EditApartment = () => {
       name,
       description,
       capacity,
-      pricePerDay,
+      price_per_day: pricePerDay,
       size,
       images,
     };
@@ -109,16 +109,14 @@ const EditApartment = () => {
       );
       if (response.ok) {
         navigate(`/`);
-      } 
-      else {
+      } else {
         console.error("Failed to delete apartment");
       }
-    }
-    catch (error) {
+    } catch (error) {
       console.error("Error deleting apartment:", error);
     }
-  }
-  
+  };
+
   return (
     <div className="container mx-auto px-4 pb-10">
       <h1 className="text-3xl font-bold text-center mb-8">Edit Apartment</h1>
@@ -128,7 +126,7 @@ const EditApartment = () => {
           name={name}
           description={description}
           capacity={capacity}
-          pricePerDay={pricePerDay}
+          price_per_day={pricePerDay}
           size={size}
           images={images}
           setName={setName}
@@ -141,8 +139,8 @@ const EditApartment = () => {
         />
       )}
       <button className="btn btn-secondary mt-4 ml-6 w-" onClick={handleDelete}>
-              Delete Apartment
-            </button>
+        Delete Apartment
+      </button>
     </div>
   );
 };

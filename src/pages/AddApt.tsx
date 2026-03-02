@@ -42,7 +42,7 @@ const AddApt = () => {
       name,
       description,
       capacity,
-      pricePerDay,
+      price_per_day: pricePerDay,
       size,
       images,
     };
@@ -75,7 +75,7 @@ const AddApt = () => {
         name={name}
         description={description}
         capacity={capacity}
-        pricePerDay={pricePerDay}
+        price_per_day={pricePerDay}
         size={size}
         images={images}
         setName={setName}

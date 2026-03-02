@@ -23,6 +23,8 @@ const ApartmentDet = () => {
 
   const storedToken = localStorage.getItem("authToken");
 
+  
+
   useEffect(() => {
     const fetchApt = async () => {
       const res = await fetch(
@@ -57,7 +59,7 @@ const ApartmentDet = () => {
           return {
             ...currentApartment,
             bookings: currentApartment.bookings.filter(
-              (booking) => booking._id !== bookingId,
+              (booking) => booking.id !== bookingId,
             ),
           };
         });
@@ -93,11 +95,11 @@ const ApartmentDet = () => {
             Authorization: `Bearer ${storedToken}`,
           },
           body: JSON.stringify({
-            apartmentId: apartment._id,
-            checkIn: dateRange.from.toISOString(),
-            checkOut: dateRange.to.toISOString(),
-            guestName: guestName,
-            guests: guests,
+            apartment_id: apartment.id,
+            check_in: dateRange.from.toISOString(),
+            check_out: dateRange.to.toISOString(),
+            guest_name: guestName,
+            // guests: guests,
           }),
         });
         if (!res.ok) {
@@ -127,7 +129,7 @@ const ApartmentDet = () => {
                 Book now
               </button>
               <Link
-                to={`/apartment/${apartment._id}/edit`}
+                to={`/apartment/${apartment.id}/edit`}
                 className="btn btn-secondary flex-1"
               >
                 Edit Apartment
@@ -180,8 +182,8 @@ const ApartmentDet = () => {
                       selectedDate={dateRange}
                       onDateChange={(dateRange) => setDateRange(dateRange!)}
                       disabled={apartment.bookings.map((booking) => ({
-                        from: new Date(booking.checkIn || booking.in!),
-                        to: new Date(booking.checkOut || booking.out!),
+                        from: new Date(booking.check_in),
+                        to: new Date(booking.check_out),
                       }))}
                     />
                   </div>
@@ -210,7 +212,7 @@ const ApartmentDet = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {apartment.bookings.map((booking) => (
                 <BookingCard
-                  key={booking._id}
+                  key={booking.id}
                   booking={booking}
                   handleDelete={handleDelete}
                 />
