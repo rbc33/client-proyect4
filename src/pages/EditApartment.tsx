@@ -138,9 +138,34 @@ const EditApartment = () => {
           handleSubmit={handleSubmit}
         />
       )}
+      <div className="flex flex-row justify-between">
+
       <button className="btn btn-secondary mt-4 ml-6 w-" onClick={handleDelete}>
         Delete Apartment
       </button>
+      <div className="flex flex-row justify-end">
+        {images && images.map((image, index) => (
+          <div key={index} className="relative m-2 w-32 h-32">
+            <img
+              src={image}
+              alt={`Apartment ${index}`}
+              className="w-full h-full object-cover"
+            />
+            <button
+              type="button"
+              onClick={() => {
+                const newImages = images.filter((_, i) => i !== index);
+                setImages(newImages);
+              }}
+              aria-label={`Remove image ${index + 1}`}
+              className="absolute bottom-1 left-1 bg-black bg-opacity-40 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm"
+            >
+              ×
+            </button>
+          </div>
+        ))}
+      </div>
+      </div>
     </div>
   );
 };
